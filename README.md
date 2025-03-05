@@ -24,7 +24,7 @@
 ## ✔️ 구현 기능 목록
 
 ### 저장된 TO-DO LIST를 가져오는 기능
-- [ ] `src/main/resources/tasks.json`에서 파일 입출력을 통해 TO-DO LIST 항목을 가져오는 기능을 구현한다.
+- [x] `src/main/resources/tasks.json`에서 파일 입출력을 통해 TO-DO LIST를 가져오는 기능을 구현한다.
 
 ### TO-DO LIST 프로그램 시작을 알리는 메시지를 출력하는 기능
 - [ ] TO-DO LIST 프로그램 시작을 알리는 메시지를 출력하는 기능을 구현한다.
