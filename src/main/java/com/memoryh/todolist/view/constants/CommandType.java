@@ -13,7 +13,7 @@ public enum CommandType {
 
     private final String command;
 
-    CommandType(String command) {
+    CommandType(final String command) {
         this.command = command;
     }
 
