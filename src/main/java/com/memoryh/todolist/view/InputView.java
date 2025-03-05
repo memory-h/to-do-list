@@ -10,6 +10,19 @@ public class InputView {
 
     private InputView() {}
 
+    public static String getTitle() {
+        System.out.print("제목을 입력하세요. : ");
+        String userInput = readUserInput();
+
+        try {
+            UserInputValidator.validateUserInput(userInput);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return getTitle();
+        }
+        return userInput;
+    }
+
     public static String getCommandInput() {
         System.out.print("추가, 수정, 삭제, 조회, 종료 중 하나를 입력하세요. (예: 추가) : ");
         String userInput = readUserInput();
