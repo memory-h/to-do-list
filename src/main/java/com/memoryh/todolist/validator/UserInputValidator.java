@@ -1,6 +1,6 @@
 package com.memoryh.todolist.validator;
 
-import com.memoryh.todolist.view.constants.CommandType;
+import com.memoryh.todolist.common.constants.CommandType;
 
 import java.util.Arrays;
 

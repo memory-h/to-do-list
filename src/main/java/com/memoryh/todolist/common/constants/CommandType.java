@@ -1,4 +1,4 @@
-package com.memoryh.todolist.view.constants;
+package com.memoryh.todolist.common.constants;
 
 import lombok.Getter;
 
