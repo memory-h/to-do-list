@@ -32,13 +32,30 @@ public class ToDoListServiceImpl implements ToDoListService {
 
     @Override
     public void markAsCompleted(final List<Task> taskList, final long taskId) {
-        updateCompleted(taskList, taskId);
+        markTaskAsCompleted(taskList, taskId);
         List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
         toDoListRepository.saveTaskListToJsonFile(taskDTOList);
     }
 
-    private void updateCompleted(List<Task> taskList, long taskId) {
+    @Override
+    public void deleteTask(final List<Task> taskList, final long taskId) {
+        removeTaskById(taskList, taskId);
+        List<TaskDTO> taskDTOList = new ArrayList<>();
+        mapTasksToDTOs(taskList, taskDTOList);
+        toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+    }
+
+    private void removeTaskById(final List<Task> taskList, final long taskId) {
+        for (Task task : taskList) {
+            if (task.getId() == taskId) {
+                taskList.remove(task);
+                break;
+            }
+        }
+    }
+
+    private void markTaskAsCompleted(final List<Task> taskList, final long taskId) {
         for (Task task : taskList) {
             if (task.getId() == taskId) {
                 task.updateCompleted(true);
