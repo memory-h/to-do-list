@@ -10,6 +10,10 @@ public class InputView {
 
     private InputView() {}
 
+    public static void printDeleteIdPrompt() {
+        System.out.print("삭제할 id를 입력하세요. : ");
+    }
+
     public static String getCompleted() {
         System.out.print("완료 여부를 입력하세요. (예: y) : ");
         String userInput = readUserInput().toLowerCase();
@@ -23,7 +27,6 @@ public class InputView {
     }
 
     public static String getTaskId() {
-        System.out.print("수정할 id를 입력하세요. : ");
         String userInput = readUserInput();
         try {
             UserInputValidator.isNaturalNumber(userInput);
@@ -32,6 +35,10 @@ public class InputView {
             return getTaskId();
         }
         return userInput;
+    }
+
+    public static void printUpdateIdPrompt() {
+        System.out.print("수정할 id를 입력하세요. : ");
     }
 
     public static String getTitle() {
