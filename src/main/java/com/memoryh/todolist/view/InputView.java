@@ -11,7 +11,7 @@ public class InputView {
     private InputView() {}
 
     public static String getCompleted() {
-        System.out.print("완료 여부를 입력하세요. (예: y)");
+        System.out.print("완료 여부를 입력하세요. (예: y) : ");
         String userInput = readUserInput().toLowerCase();
         try {
             UserInputValidator.validateUserInput(userInput);
