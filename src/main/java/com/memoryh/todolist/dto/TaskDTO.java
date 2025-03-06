@@ -1,5 +1,6 @@
 package com.memoryh.todolist.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
@@ -13,6 +14,7 @@ public class TaskDTO {
     private String title;
 
     @JsonProperty("dueDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate localDate;
 
     private boolean completed;
