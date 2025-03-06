@@ -16,7 +16,7 @@ public class InputView {
 
         try {
             UserInputValidator.validateUserInput(userInput);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getTitle();
         }
