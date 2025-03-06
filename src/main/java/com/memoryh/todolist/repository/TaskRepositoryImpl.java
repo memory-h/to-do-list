@@ -19,7 +19,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(TASK_FILE_PATH), StandardCharsets.UTF_8))) {
             taskListDTO = objectMapper.readValue(reader, TaskListDTO.class);
         } catch (IOException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println("[ERROR] JSON 파일 로드 중 오류 발생: " + e.getMessage());
         }
         return taskListDTO;
     }
