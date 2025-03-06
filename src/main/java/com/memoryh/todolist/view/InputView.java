@@ -10,6 +10,18 @@ public class InputView {
 
     private InputView() {}
 
+    public static String getCompleted() {
+        System.out.print("완료 여부를 입력하세요. (예: y)");
+        String userInput = readUserInput().toLowerCase();
+        try {
+            UserInputValidator.validateUserInput(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getCompleted();
+        }
+        return userInput;
+    }
+
     public static String getTaskId() {
         System.out.print("수정할 id를 입력하세요. : ");
         String userInput = readUserInput();
@@ -17,6 +29,7 @@ public class InputView {
             UserInputValidator.isNaturalNumber(userInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return getTaskId();
         }
         return userInput;
     }
