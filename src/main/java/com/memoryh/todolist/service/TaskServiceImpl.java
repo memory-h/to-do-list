@@ -17,7 +17,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskList findAllTasks() {
         TaskListDTO taskListDTO = taskRepositoryImpl.readTaskListFromFile();
-        List<Task> taskList = TaskMapper.toDomainList(taskListDTO.getTasks());
+        List<Task> taskList = TaskMapper.toDomainList(taskListDTO.getTaskDTOList());
         return TaskList.of(taskList);
     }
 

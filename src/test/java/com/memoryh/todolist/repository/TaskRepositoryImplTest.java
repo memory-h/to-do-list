@@ -17,16 +17,16 @@ class TaskRepositoryImplTest {
         TaskListDTO taskByTaskFilePath = taskRepository.readTaskListFromFile();
 
         assertThat(taskByTaskFilePath).isNotNull();
-        assertThat(taskByTaskFilePath.getTasks()).isNotEmpty();
+        assertThat(taskByTaskFilePath.getTaskDTOList()).isNotEmpty();
         assertThat(taskByTaskFilePath).isInstanceOf(TaskListDTO.class);
 
-        TaskDTO firstTask = taskByTaskFilePath.getTasks().get(0);
+        TaskDTO firstTask = taskByTaskFilePath.getTaskDTOList().get(0);
         assertThat(firstTask.getId()).isEqualTo(1L);
         assertThat(firstTask.getTitle()).isEqualTo("Java 프로젝트 완료하기");
         assertThat(firstTask.getLocalDate()).isEqualTo("2025-03-10");
         assertThat(firstTask.isCompleted()).isTrue();
 
-        TaskDTO secondTask = taskByTaskFilePath.getTasks().get(1);
+        TaskDTO secondTask = taskByTaskFilePath.getTaskDTOList().get(1);
         assertThat(secondTask.getId()).isEqualTo(2L);
         assertThat(secondTask.getTitle()).isEqualTo("운동하기");
         assertThat(secondTask.getLocalDate()).isEqualTo("2025-03-05");
