@@ -26,4 +26,8 @@ public class Task {
         return new Task(id, title, localDate, completed);
     }
 
+    public void updateCompleted(final boolean completed) {
+        this.completed = completed;
+    }
+
 }

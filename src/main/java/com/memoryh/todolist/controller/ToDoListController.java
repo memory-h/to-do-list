@@ -34,7 +34,12 @@ public class ToDoListController {
             List<Task> addedTaskList = toDoListService.addTask(taskList, title);
             toDoListService.convertToTaskListDTO(addedTaskList);
         } else if (CommandType.UPDATE.getCommand().equals(command)) {
-            System.out.println("업데이트");
+            long taskId = Long.parseLong(InputView.getTaskId());
+            String completed = InputView.getCompleted();
+
+            if (completed.equals("y")) {
+                toDoListService.markAsCompleted(taskList, taskId);
+            }
         } else if (CommandType.DELETE.getCommand().equals(command)) {
 
         } else if (CommandType.LIST.getCommand().equals(command)) {

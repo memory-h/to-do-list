@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,6 +28,23 @@ public class ToDoListServiceImpl implements ToDoListService {
         List<TaskDTO> taskDTOList = new TaskListDTO().getTasks();
         mapTasksToDTOs(taskList, taskDTOList);
         toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+    }
+
+    @Override
+    public void markAsCompleted(final List<Task> taskList, final long taskId) {
+        updateCompleted(taskList, taskId);
+        List<TaskDTO> taskDTOList = new ArrayList<>();
+        mapTasksToDTOs(taskList, taskDTOList);
+        toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+    }
+
+    private void updateCompleted(List<Task> taskList, long taskId) {
+        for (Task task : taskList) {
+            if (task.getId() == taskId) {
+                task.updateCompleted(true);
+                break;
+            }
+        }
     }
 
     private void mapTasksToDTOs(final List<Task> taskList, final List<TaskDTO> taskDTOList) {
