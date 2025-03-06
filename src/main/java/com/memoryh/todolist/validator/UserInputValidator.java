@@ -6,11 +6,14 @@ import java.util.Arrays;
 
 public class UserInputValidator {
 
+    private static final String NATURAL_NUMBER_PATTERN = "^[1-9]\\d*$";
+
     private UserInputValidator() {}
 
-    public static void validateUserInput(final String userInput) {
-        if (userInput == null || userInput.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
+    public static void isNaturalNumber(final String userInput) {
+        validateUserInput(userInput);
+        if (!userInput.matches(NATURAL_NUMBER_PATTERN)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
     }
 
@@ -21,6 +24,12 @@ public class UserInputValidator {
 
         if (!isValid) {
             throw new IllegalArgumentException("[ERROR] 추가, 수정, 삭제, 조회, 종료 중 1개만 입력 가능합니다.");
+        }
+    }
+
+    public static void validateUserInput(final String userInput) {
+        if (userInput == null || userInput.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
     }
 
