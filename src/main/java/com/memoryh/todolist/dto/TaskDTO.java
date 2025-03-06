@@ -2,11 +2,13 @@ package com.memoryh.todolist.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Getter
+@JsonPropertyOrder({"id", "title", "dueDate", "completed"})
 public class TaskDTO {
 
     private Long id;
