@@ -10,6 +10,17 @@ public class InputView {
 
     private InputView() {}
 
+    public static String getTaskId() {
+        System.out.print("수정할 id를 입력하세요. : ");
+        String userInput = readUserInput();
+        try {
+            UserInputValidator.isNaturalNumber(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return userInput;
+    }
+
     public static String getTitle() {
         System.out.print("제목을 입력하세요. : ");
         String userInput = readUserInput();
