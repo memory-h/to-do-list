@@ -1,9 +1,8 @@
-package com.memoryh.todolist.initializer.service;
+package com.memoryh.todolist.service;
 
 import com.memoryh.todolist.domain.TaskList;
 import com.memoryh.todolist.repository.TaskRepository;
 import com.memoryh.todolist.repository.TaskRepositoryImpl;
-import com.memoryh.todolist.service.TaskServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
