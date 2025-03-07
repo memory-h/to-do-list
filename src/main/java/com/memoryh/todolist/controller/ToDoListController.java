@@ -8,6 +8,7 @@ import com.memoryh.todolist.view.OutputView;
 import com.memoryh.todolist.common.constants.CommandType;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,45 +22,73 @@ public class ToDoListController {
         OutputView.printWelcomeMessage();
 
         while (true) {
-            String command = receiveUserCommand();
-            if (CommandType.EXIT.getCommand().equals(command)) {
+            String commandInput = receiveUserCommand();
+            CommandType commandType = getCommandType(commandInput);
+
+            if (commandType == CommandType.EXIT) {
                 break;
             }
-            handleCommand(taskList, command);
+            handleCommand(taskList, commandType);
         }
     }
 
-    private void handleCommand(final List<Task> taskList, final String command) {
-        if (CommandType.ADD.getCommand().equals(command)) {
-            String title = InputView.getTitle();
-            List<Task> addedTaskList = toDoListService.addTask(taskList, title);
-            toDoListService.convertToTaskListDTO(addedTaskList);
-        } else if (CommandType.UPDATE.getCommand().equals(command)) {
-            InputView.printUpdateIdPrompt();
-            long taskId = Long.parseLong(InputView.getTaskId());
-            String completed = InputView.getCompleted();
+    private void handleCommand(final List<Task> taskList, final CommandType commandType) {
+        switch (commandType) {
+            case ADD:
+                handleAddCommand(taskList);
+                break;
+            case UPDATE:
+                handleUpdateCommand(taskList);
+                break;
+            case DELETE:
+                handleDeleteCommand(taskList);
+                break;
+            case LIST:
+                handleListCommand(taskList);
+                break;
+        }
+    }
 
-            if (completed.equals("y")) {
-                toDoListService.markAsCompleted(taskList, taskId);
-            }
-        } else if (CommandType.DELETE.getCommand().equals(command)) {
-            InputView.printDeleteIdPrompt();
-            long taskId = Long.parseLong(InputView.getTaskId());
-            toDoListService.deleteTask(taskList, taskId);
-        } else if (CommandType.LIST.getCommand().equals(command)) {
-            String dateFromInput = InputView.getDateFromInput();
-            TaskListDTO matchedTasksByDate = toDoListService.findTasksByDate(taskList, dateFromInput);
+    private void handleAddCommand(final List<Task> taskList) {
+        String title = InputView.getTitle();
+        List<Task> addedTaskList = toDoListService.addTask(taskList, title);
+        toDoListService.convertToTaskListDTO(addedTaskList);
+    }
 
-            if (matchedTasksByDate.getTasks().isEmpty()) {
-                OutputView.printNoTasksMessage();
-            } else {
-                OutputView.printTaskList(matchedTasksByDate);
-            }
+    private void handleUpdateCommand(final List<Task> taskList) {
+        long taskId = Long.parseLong(InputView.getUpdateId());
+        String completed = InputView.getCompleted();
+
+        if (completed.equals("y")) {
+            toDoListService.markAsCompleted(taskList, taskId);
+        }
+    }
+
+    private void handleDeleteCommand(final List<Task> taskList) {
+        long taskId = Long.parseLong(InputView.getDeleteId());
+        toDoListService.deleteTask(taskList, taskId);
+    }
+
+    private void handleListCommand(final List<Task> taskList) {
+        String dateFromInput = InputView.getDateFromInput();
+        TaskListDTO matchedTasksByDate = toDoListService.findTasksByDate(taskList, dateFromInput);
+
+        if (matchedTasksByDate.getTasks().isEmpty()) {
+            OutputView.printNoTasksMessage();
+        } else {
+            OutputView.printTaskList(matchedTasksByDate);
         }
     }
 
     private String receiveUserCommand() {
         return InputView.getCommandInput();
+    }
+
+    private CommandType getCommandType(final String commandInput) {
+        return Arrays.stream(CommandType.values())
+                .filter(commandType -> commandType.getCommand().equals(commandInput))
+                .findFirst()
+                .orElse(null);
     }
 
 }
