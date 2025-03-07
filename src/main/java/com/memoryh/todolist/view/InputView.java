@@ -10,6 +10,19 @@ public class InputView {
 
     private InputView() {}
 
+    public static String getDateFromInput() {
+        System.out.print("조회하고 싶은 날짜를 입력하세요. (예: 2025-03-07) : ");
+        String userInput = readUserInput();
+
+        try {
+            UserInputValidator.validateDateFromInput(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getDateFromInput();
+        }
+        return userInput;
+    }
+
     public static void printDeleteIdPrompt() {
         System.out.print("삭제할 id를 입력하세요. : ");
     }
@@ -28,6 +41,7 @@ public class InputView {
 
     public static String getTaskId() {
         String userInput = readUserInput();
+
         try {
             UserInputValidator.isNaturalNumber(userInput);
         } catch (IllegalArgumentException e) {
