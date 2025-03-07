@@ -23,8 +23,16 @@ public class InputView {
         return userInput;
     }
 
-    public static void printDeleteIdPrompt() {
+    public static String getDeleteId() {
         System.out.print("삭제할 id를 입력하세요. : ");
+        String userInput;
+        try {
+            userInput = getTaskId();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getDeleteId();
+        }
+        return userInput;
     }
 
     public static String getCompleted() {
@@ -39,20 +47,16 @@ public class InputView {
         return userInput;
     }
 
-    public static String getTaskId() {
-        String userInput = readUserInput();
-
+    public static String getUpdateId() {
+        System.out.print("수정할 id를 입력하세요. : ");
+        String userInput;
         try {
-            UserInputValidator.isNaturalNumber(userInput);
+            userInput = getTaskId();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getTaskId();
+            return getUpdateId();
         }
         return userInput;
-    }
-
-    public static void printUpdateIdPrompt() {
-        System.out.print("수정할 id를 입력하세요. : ");
     }
 
     public static String getTitle() {
@@ -78,6 +82,12 @@ public class InputView {
             System.out.println(e.getMessage());
             return getCommandInput();
         }
+        return userInput;
+    }
+
+    private static String getTaskId() throws IllegalArgumentException {
+        String userInput = readUserInput();
+        UserInputValidator.isNaturalNumber(userInput);
         return userInput;
     }
 
