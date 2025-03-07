@@ -15,13 +15,10 @@ import java.time.LocalDate;
 public class TaskDTO {
 
     private Long id;
-
     private String title;
-
     @JsonProperty("dueDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate localDate;
-
     private boolean completed;
 
     private TaskDTO(final Long id, final String title, final LocalDate localDate, final boolean completed) {

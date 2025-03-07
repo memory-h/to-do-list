@@ -8,11 +8,8 @@ import java.time.LocalDate;
 public class Task {
 
     private Long id;
-
     private String title;
-
     private LocalDate localDate;
-
     private boolean completed;
 
     private Task (final Long id, final String title, final LocalDate localDate, final boolean completed) {
