@@ -24,7 +24,7 @@ public class ToDoListRepositoryImpl implements ToDoListRepository {
     private final String taskFilePath;
 
     @Override
-    public void saveTaskListToJsonFile(final List<TaskDTO> taskDTOList) {
+    public void writeTaskListToFile(final List<TaskDTO> taskDTOList) {
         TaskListDTO taskListDTO = new TaskListDTO(taskDTOList);
         String convertedTaskListToJson = convertTaskListToJson(taskListDTO);
 

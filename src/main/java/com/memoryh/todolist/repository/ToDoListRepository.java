@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface ToDoListRepository {
 
-    void saveTaskListToJsonFile(final List<TaskDTO> taskDTOList);
+    void writeTaskListToFile(final List<TaskDTO> taskDTOList);
 
 }

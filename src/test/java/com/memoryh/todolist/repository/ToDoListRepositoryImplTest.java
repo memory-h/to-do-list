@@ -31,7 +31,7 @@ class ToDoListRepositoryImplTest {
     @Test
     @DisplayName("json 파일을 지정 경로에 저장했는지 확인한다.")
     void checkSavedJsonFile() {
-        toDoListRepository.saveTaskListToJsonFile(taskList);
+        toDoListRepository.writeTaskListToFile(taskList);
         File file = new File(TASK_FILE_PATH);
 
         assertThat(file.exists()).isTrue();

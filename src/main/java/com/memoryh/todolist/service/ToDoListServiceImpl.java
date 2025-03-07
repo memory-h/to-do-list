@@ -27,7 +27,7 @@ public class ToDoListServiceImpl implements ToDoListService {
     public void convertToTaskListDTO(final List<Task> taskList) {
         List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
-        toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+        toDoListRepository.writeTaskListToFile(taskDTOList);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ToDoListServiceImpl implements ToDoListService {
         markTaskAsCompleted(taskList, taskId);
         List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
-        toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+        toDoListRepository.writeTaskListToFile(taskDTOList);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ToDoListServiceImpl implements ToDoListService {
         removeTaskById(taskList, taskId);
         List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
-        toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+        toDoListRepository.writeTaskListToFile(taskDTOList);
     }
 
     @Override
