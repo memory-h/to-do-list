@@ -14,8 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ToDoListServiceImpl implements ToDoListService {
 
-    private final ToDoListRepository toDoListRepository;
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final ToDoListRepository toDoListRepository;
 
     @Override
     public List<Task> addTask(final List<Task> taskList, final String title) {
