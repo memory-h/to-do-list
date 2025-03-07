@@ -21,7 +21,7 @@ public class ToDoListController {
         OutputView.printWelcomeMessage();
 
         while (true) {
-            String command = getCommand();
+            String command = receiveUserCommand();
             if (CommandType.EXIT.getCommand().equals(command)) {
                 break;
             }
@@ -58,7 +58,7 @@ public class ToDoListController {
         }
     }
 
-    private String getCommand() {
+    private String receiveUserCommand() {
         return InputView.getCommandInput();
     }
 
