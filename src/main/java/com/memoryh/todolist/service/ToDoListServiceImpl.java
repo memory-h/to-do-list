@@ -2,7 +2,6 @@ package com.memoryh.todolist.service;
 
 import com.memoryh.todolist.domain.Task;
 import com.memoryh.todolist.dto.TaskDTO;
-import com.memoryh.todolist.dto.TaskListDTO;
 import com.memoryh.todolist.repository.ToDoListRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +24,7 @@ public class ToDoListServiceImpl implements ToDoListService {
 
     @Override
     public void convertToTaskListDTO(final List<Task> taskList) {
-        List<TaskDTO> taskDTOList = new TaskListDTO().getTasks();
+        List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
         toDoListRepository.saveTaskListToJsonFile(taskDTOList);
     }
