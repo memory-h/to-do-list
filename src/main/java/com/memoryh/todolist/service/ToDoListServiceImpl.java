@@ -2,6 +2,7 @@ package com.memoryh.todolist.service;
 
 import com.memoryh.todolist.domain.Task;
 import com.memoryh.todolist.dto.TaskDTO;
+import com.memoryh.todolist.dto.TaskListDTO;
 import com.memoryh.todolist.repository.ToDoListRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -43,6 +44,23 @@ public class ToDoListServiceImpl implements ToDoListService {
         List<TaskDTO> taskDTOList = new ArrayList<>();
         mapTasksToDTOs(taskList, taskDTOList);
         toDoListRepository.saveTaskListToJsonFile(taskDTOList);
+    }
+
+    @Override
+    public TaskListDTO findTasksByDate(final List<Task> taskList, final String date) {
+        TaskListDTO taskListDTO = new TaskListDTO();
+        List<TaskDTO> taskDTOList = taskListDTO.getTasks();
+        LocalDate userInputLocalDate = LocalDate.parse(date);
+        filterTasksByDate(taskList, userInputLocalDate, taskDTOList);
+        return taskListDTO;
+    }
+
+    private void filterTasksByDate(List<Task> taskList, LocalDate userInputLocalDate, List<TaskDTO> taskDTOList) {
+        for (Task task : taskList) {
+            if (task.getLocalDate().equals(userInputLocalDate)) {
+                taskDTOList.add(TaskDTO.of(task.getId(), task.getTitle(), task.getLocalDate(), task.isCompleted()));
+            }
+        }
     }
 
     private void removeTaskById(final List<Task> taskList, final long taskId) {

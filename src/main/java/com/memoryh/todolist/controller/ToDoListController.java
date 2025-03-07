@@ -1,6 +1,7 @@
 package com.memoryh.todolist.controller;
 
 import com.memoryh.todolist.domain.Task;
+import com.memoryh.todolist.dto.TaskListDTO;
 import com.memoryh.todolist.service.ToDoListService;
 import com.memoryh.todolist.view.InputView;
 import com.memoryh.todolist.view.OutputView;
@@ -47,6 +48,7 @@ public class ToDoListController {
             toDoListService.deleteTask(taskList, taskId);
         } else if (CommandType.LIST.getCommand().equals(command)) {
             String dateFromInput = InputView.getDateFromInput();
+            TaskListDTO matchedTasksByDate = toDoListService.findTasksByDate(taskList, dateFromInput);
         }
     }
 
