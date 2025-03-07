@@ -1,5 +1,6 @@
 package com.memoryh.todolist.config;
 
+import com.memoryh.todolist.common.constants.TaskFilePath;
 import com.memoryh.todolist.controller.TaskController;
 import com.memoryh.todolist.controller.ToDoListController;
 import com.memoryh.todolist.repository.TaskRepository;
@@ -13,8 +14,6 @@ import com.memoryh.todolist.service.ToDoListServiceImpl;
 
 public class AppConfig {
 
-    private static final String TASK_FILE_PATH = "src/main/resources/tasks.json";
-
     public ToDoListController toDoListController() {
         return new ToDoListController(taskController(), toDoListService());
     }
@@ -24,7 +23,7 @@ public class AppConfig {
     }
 
     public ToDoListRepository toDoListRepository() {
-        return new ToDoListRepositoryImpl(TASK_FILE_PATH);
+        return new ToDoListRepositoryImpl(TaskFilePath.getTaskFilePath());
     }
 
     public TaskController taskController() {
