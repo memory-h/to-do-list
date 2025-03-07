@@ -46,7 +46,7 @@ public class ToDoListController {
             long taskId = Long.parseLong(InputView.getTaskId());
             toDoListService.deleteTask(taskList, taskId);
         } else if (CommandType.LIST.getCommand().equals(command)) {
-
+            String dateFromInput = InputView.getDateFromInput();
         }
     }
 

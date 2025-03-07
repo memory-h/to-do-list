@@ -2,13 +2,26 @@ package com.memoryh.todolist.validator;
 
 import com.memoryh.todolist.common.constants.CommandType;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class UserInputValidator {
 
     private static final String NATURAL_NUMBER_PATTERN = "^[1-9]\\d*$";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private UserInputValidator() {}
+
+    public static void validateDateFromInput(final String userInput) {
+        validateUserInput(userInput);
+        try {
+            LocalDate.parse(userInput, DATE_TIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("[ERROR] 날짜 형식에 맞지 않습니다.");
+        }
+    }
 
     public static void isNaturalNumber(final String userInput) {
         validateUserInput(userInput);
