@@ -49,7 +49,12 @@ public class ToDoListController {
         } else if (CommandType.LIST.getCommand().equals(command)) {
             String dateFromInput = InputView.getDateFromInput();
             TaskListDTO matchedTasksByDate = toDoListService.findTasksByDate(taskList, dateFromInput);
-            OutputView.printTaskList(matchedTasksByDate);
+
+            if (matchedTasksByDate.getTasks().isEmpty()) {
+                OutputView.printNoTasksMessage();
+            } else {
+                OutputView.printTaskList(matchedTasksByDate);
+            }
         }
     }
 
