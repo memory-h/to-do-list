@@ -2,6 +2,7 @@ package com.memoryh.todolist.controller;
 
 import com.memoryh.todolist.domain.Task;
 import com.memoryh.todolist.dto.TaskListDTO;
+import com.memoryh.todolist.service.TaskService;
 import com.memoryh.todolist.service.ToDoListService;
 import com.memoryh.todolist.view.InputView;
 import com.memoryh.todolist.view.OutputView;
@@ -14,11 +15,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ToDoListController {
 
-    private final TaskController taskController;
+    private final TaskService taskService;
     private final ToDoListService toDoListService;
 
     public void run() {
-        List<Task> taskList = taskController.fetchAllTasks().getTaskList();
+        List<Task> taskList = taskService.findAllTasks().getTaskList();
         OutputView.printWelcomeMessage();
 
         while (true) {
